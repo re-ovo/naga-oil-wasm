@@ -1,8 +1,7 @@
-use std::collections::HashMap;
 
 use naga::{
     back::wgsl,
-    valid::{Capabilities, ModuleInfo, ValidationFlags, Validator},
+    valid::{Capabilities, ValidationFlags, Validator},
 };
 use naga_oil::compose::{
     ComposableModuleDescriptor, Composer, NagaModuleDescriptor, ShaderDefValue,
@@ -31,10 +30,7 @@ fn process(composer: &mut Composer) {
     let module = composer
         .make_naga_module(NagaModuleDescriptor {
             source: include_str!("../shaders/pbr.wgsl"),
-            shader_defs: [
-                ("MAX_LIGHTS".to_string(), ShaderDefValue::Int(222)),
-            ]
-            .into(),
+            shader_defs: [("MAX_LIGHTS".to_string(), ShaderDefValue::Int(222))].into(),
             ..Default::default()
         })
         .unwrap();

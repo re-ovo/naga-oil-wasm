@@ -1,19 +1,15 @@
 mod shader_def;
 mod utils;
 
-use std::{collections::HashMap, iter::FromIterator};
 
 use naga::{
     back::wgsl,
-    valid::{Capabilities, ModuleInfo, ValidationFlags, Validator},
+    valid::{Capabilities, ValidationFlags, Validator},
 };
 use naga_oil::compose::{
     ComposableModuleDescriptor, Composer, NagaModuleDescriptor,
-    ShaderDefValue as InternalShaderDefValue,
 };
-use shader_def::ShaderDefValue;
 use wasm_bindgen::prelude::*;
-use serde::{Deserialize, Serialize};
 
 #[wasm_bindgen]
 pub struct ShaderLibrary {
@@ -47,8 +43,11 @@ impl ShaderLibrary {
         self.composer.remove_composable_module(name)
     }
 
-    pub fn process(&mut self, source: &str, shader_defs: shader_def::ShaderDefs) -> Result<String, JsValue> {
-        
+    pub fn process(
+        &mut self,
+        source: &str,
+        shader_defs: shader_def::ShaderDefs,
+    ) -> Result<String, JsValue> {
         // Create naga module
         let module = self
             .composer

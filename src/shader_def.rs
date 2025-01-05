@@ -63,6 +63,9 @@ impl ShaderDefs {
 
 impl ShaderDefs {
     pub fn into_hash_map(self) -> HashMap<String, InternalShaderDefValue> {
-        self.shader_defs.into_iter().map(|(k, v)| (k, v.internal)).collect()
+        self.shader_defs
+            .into_iter()
+            .map(|(k, v)| (k, v.internal))
+            .collect()
     }
 }
