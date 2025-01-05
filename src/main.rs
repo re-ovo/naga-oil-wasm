@@ -33,7 +33,6 @@ fn process(composer: &mut Composer) {
             source: include_str!("../shaders/pbr.wgsl"),
             shader_defs: [
                 ("MAX_LIGHTS".to_string(), ShaderDefValue::Int(222)),
-                ("FUCK".to_string(), Default::default()),
             ]
             .into(),
             ..Default::default()
