@@ -14,7 +14,7 @@ default = ["console_error_panic_hook"]
 wasm-bindgen = "0.2.84"
 console_error_panic_hook = { version = "0.1.7", optional = true }
 naga_oil = "0.16.0"
-naga = { version = "23.1.0", features = ["wgsl-out"] }
+naga = { version = "24.0.0", features = ["wgsl-out"] }
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.34"
