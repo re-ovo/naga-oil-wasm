@@ -1,14 +1,11 @@
 mod shader_def;
 mod utils;
 
-
 use naga::{
     back::wgsl,
     valid::{Capabilities, ValidationFlags, Validator},
 };
-use naga_oil::compose::{
-    ComposableModuleDescriptor, Composer, NagaModuleDescriptor,
-};
+use naga_oil::compose::{ComposableModuleDescriptor, Composer, NagaModuleDescriptor};
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -59,7 +56,7 @@ impl ShaderLibrary {
             .map_err(|e| JsValue::from_str(&e.to_string()))?;
 
         // Validate module
-        let module_info = Validator::new(ValidationFlags::empty(), Capabilities::empty())
+        let module_info = Validator::new(ValidationFlags::all(), Capabilities::default())
             .validate(&module)
             .map_err(|e| JsValue::from_str(&e.to_string()))?;
 

@@ -1,4 +1,5 @@
 #import test::constants as C
+#import test::constants::test
 
 @group(0) @binding(auto)
 var<uniform> aaa: vec3<f32>;
@@ -15,5 +16,6 @@ var<uniform> lights: array<PointLight, #MAX_LIGHTS>;
 fn main() -> @builtin(position) vec4<f32> {
     let a = C::bbb;
     let w = C::ccc;
-    return C::gen_vertex_pos();
+    test();
+    return vec4<f32>(1.0, 1.0, 1.0, 1.0);
 }

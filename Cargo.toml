@@ -1,6 +1,6 @@
 [package]
 name = "naga-oil-wasm"
-version = "0.1.0"
+version = "0.1.2"
 authors = ["RE <qq1609403959@outlook.com>"]
 edition = "2018"
 
@@ -13,8 +13,8 @@ default = ["console_error_panic_hook"]
 [dependencies]
 wasm-bindgen = "0.2.84"
 console_error_panic_hook = { version = "0.1.7", optional = true }
-naga_oil = "0.16.0"
-naga = { version = "23.1.0", features = ["wgsl-out"] }
+naga_oil = "0.17.0"
+naga = { version = "24.0.0", features = ["wgsl-out"] }
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.34"

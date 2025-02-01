@@ -4,11 +4,7 @@
   "collaborators": [
     "RE <qq1609403959@outlook.com>"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/re-ovo/naga-oil-wasm"
-  },
-  "version": "0.1.1",
+  "version": "0.1.2",
   "files": [
     "naga_oil_wasm_bg.wasm",
     "naga_oil_wasm.js",

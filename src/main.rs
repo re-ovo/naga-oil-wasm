@@ -1,15 +1,14 @@
-
 use naga::{
     back::wgsl,
     valid::{Capabilities, ValidationFlags, Validator},
 };
 use naga_oil::compose::{
-    ComposableModuleDescriptor, Composer, NagaModuleDescriptor, ShaderDefValue,
+    ComposableModuleDescriptor, Composer, NagaModuleDescriptor, ShaderDefValue, ShaderLanguage,
 };
 
 fn main() {
     let mut composer = Composer::default();
-    let mut add_module = |source: &str| {
+    let mut add_module = |source: &str, path: &str| {
         composer
             .add_composable_module(ComposableModuleDescriptor {
                 source,
@@ -18,8 +17,7 @@ fn main() {
             .unwrap();
     };
 
-    add_module(include_str!("../shaders/c.wgsl"));
-    // add_module(include_str!("../shaders/c2.wgsl"));
+    add_module(include_str!("../shaders/c.wgsl"), "c.wgsl");
 
     println!("{}", composer.contains_module("test::constants2"));
 
@@ -30,12 +28,15 @@ fn process(composer: &mut Composer) {
     let module = composer
         .make_naga_module(NagaModuleDescriptor {
             source: include_str!("../shaders/pbr.wgsl"),
+            file_path: "pbr.wgsl",
             shader_defs: [("MAX_LIGHTS".to_string(), ShaderDefValue::Int(222))].into(),
             ..Default::default()
         })
         .unwrap();
 
-    let module_info = Validator::new(ValidationFlags::empty(), Capabilities::empty())
+    println!("{:?}", module.global_variables);
+
+    let module_info = Validator::new(ValidationFlags::all(), Capabilities::default())
         .validate(&module)
         .unwrap();
 
